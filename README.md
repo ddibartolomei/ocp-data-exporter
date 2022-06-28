@@ -9,12 +9,12 @@ It extracts some data about namespaces, workloads (deployment, deployment config
 These data can be useful to have a wide view of the cluster content in order to make some analysis and statistics, for example before applications are migrated to a new OpenShift/Kubernetes cluster.
 
 ## Build
-```
+```shell
 ./mvnw clean package
 ```
 
 ##  Usage
-```
+```shell
 usage: java -jar ocpdataexporter.jar  [-b <arg>] [-c <arg>] [-i <arg>] [-n <arg>] [-p <arg>] [-t <arg>] [-u <arg>]
  -b,--batch <arg>       Batch mode, reading cluster list from yaml file
  -c,--connect <arg>     Cluster connect url
@@ -31,7 +31,7 @@ usage: java -jar ocpdataexporter.jar  [-b <arg>] [-c <arg>] [-i <arg>] [-n <arg>
 ## Run 
 
 ### Run on one OCP cluster
-```
+```shell
 java -jar target/ocpdataexporter.jar \ 
     -c <cluster url> \
     -t <auth token> \
@@ -43,7 +43,7 @@ java -jar target/ocpdataexporter.jar \
 
 Create a batch yaml file containing the connection data of the target clusters:
 
-```
+```yaml
 clusters:
   - id: my-cluster1-id
     url: https://master.cluster1.my.ocp.domain:8443
@@ -55,7 +55,7 @@ clusters:
 ``` 
 
 Run in batch mode:
-```
+```shell
 java -jar target/ocpdataexporter.jar -b my-batch-file.yml
 ```
 
@@ -63,10 +63,10 @@ java -jar target/ocpdataexporter.jar -b my-batch-file.yml
 Inside the `application.properties` file extra behaviours can be configured.
 
 ### Namespace filters
-The `ocpdataexporter.namespace.filter` can be configured to skip some namespaces based on a regular expression.
+The `ocpdataexporter.namespace.filter` can be configured to skip some namespaces based on a list of regular expression.
 
 Example:
-```
+```properties
 ocpdataexporter.namespace.filter=^default$|^openshift[-a-zA-Z0-9]*$|^kube[-a-zA-Z0-9]*$|^stackrox[-a-zA-Z0-9]*$|^portworx[-a-zA-Z0-9]*$|^monitoraggio$
 ```
 
@@ -75,6 +75,6 @@ The `ocpdataexporter.namespace.fields` can be configured to extract a list of st
 Each element of the list get searched among both the labels and the annotations of each analyzed namespace. 
 
 Example:
-```
+```properties
 ocpdataexporter.namespace.fields=some-name,project-name
 ```
