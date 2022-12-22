@@ -35,7 +35,6 @@ usage: java -jar ocpdataexporter.jar  [-b <arg>] [-c <arg>] [-i <arg>] [-n <arg>
 java -jar target/ocpdataexporter.jar \ 
     -c <cluster url> \
     -t <auth token> \
-    -t <auth token> \
     -i <cluster id>
 ```
 
